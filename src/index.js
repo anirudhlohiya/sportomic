@@ -1,35 +1,26 @@
 const express = require('express');
-const cors = require('cors');
 const dotenv = require('dotenv');
-const connectDB = require('./config/db');
-const { errorHandler } = require('./middleware/errorMiddleware');
+const connectDB = require('./config/db'); // Import the MongoDB connection logic
 
-// Load env vars
+// Load environment variables from .env file
 dotenv.config();
 
-// Connect to database
+// Connect to MongoDB using the connectDB function
 connectDB();
 
+// Initialize Express application
 const app = express();
 
 // Middleware
-app.use(express.json());
-app.use(cors());
+app.use(express.json()); // To parse incoming JSON data
 
-// Routes
+// Test route
 app.get('/', (req, res) => {
-  res.send('API is running...');
+    res.send('Sportomic Backend API is running...');
 });
 
-// User Routes
-const userRoutes = require('./routes/userRoutes');
-app.use('/api/users', userRoutes);
-
-// Error Handler
-app.use(errorHandler);
-
-const PORT = process.env.PORT || 5000;
-
+// Start the server
+const PORT = process.env.PORT || 5000; // Use port from .env or default to 5000
 app.listen(PORT, () => {
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });
