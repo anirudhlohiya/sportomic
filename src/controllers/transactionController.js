@@ -1,6 +1,6 @@
 const Transaction = require('../models/Transaction');
 
-// Create a new transaction
+// Controller: Create a new transaction
 const createTransaction = async (req, res) => {
     try {
         const newTransaction = new Transaction(req.body);
@@ -11,7 +11,7 @@ const createTransaction = async (req, res) => {
     }
 };
 
-// Get all transactions
+// Controller: Get all transactions
 const getAllTransactions = async (req, res) => {
     try {
         const transactions = await Transaction.find();
@@ -21,7 +21,7 @@ const getAllTransactions = async (req, res) => {
     }
 };
 
-// Get transaction by ID
+// Controller: Get a transaction by ID
 const getTransactionById = async (req, res) => {
     try {
         const transaction = await Transaction.findOne({ transaction_id: req.params.id });
@@ -34,4 +34,8 @@ const getTransactionById = async (req, res) => {
     }
 };
 
-module.exports = { createTransaction, getAllTransactions, getTransactionById };
+module.exports = {
+    createTransaction,
+    getAllTransactions,
+    getTransactionById
+};
