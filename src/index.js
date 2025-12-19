@@ -20,9 +20,13 @@ const app = express();
 // Middleware
 app.use(express.json()); // To parse incoming JSON data
 
-// Test route
+// Health check route
 app.get('/', (req, res) => {
-    res.send('Sportomic Backend API is running...');
+    res.status(200).json({
+        message: 'Sportomic Backend API is running...',
+        status: 'OK',
+        timestamp: new Date().toISOString()
+    });
 });
 
 // Mount API Endpoints
