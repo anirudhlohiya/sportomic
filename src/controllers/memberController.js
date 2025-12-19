@@ -1,6 +1,6 @@
 const Member = require('../models/Member');
 
-// Create a new member
+// Controller: Create a new member
 const createMember = async (req, res) => {
     try {
         const newMember = new Member(req.body);
@@ -11,7 +11,7 @@ const createMember = async (req, res) => {
     }
 };
 
-// Get all members
+// Controller: Get all members
 const getAllMembers = async (req, res) => {
     try {
         const members = await Member.find();
@@ -21,7 +21,7 @@ const getAllMembers = async (req, res) => {
     }
 };
 
-// Get member by ID
+// Controller: Get a member by ID
 const getMemberById = async (req, res) => {
     try {
         const member = await Member.findOne({ member_id: req.params.id });
@@ -34,4 +34,8 @@ const getMemberById = async (req, res) => {
     }
 };
 
-module.exports = { createMember, getAllMembers, getMemberById };
+module.exports = {
+    createMember,
+    getAllMembers,
+    getMemberById
+};
